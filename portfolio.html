@@ -1,0 +1,1422 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>LOPEZ // NEXUS PORTFOLIO</title>
+
+<style>
+/* =====================================
+   LOPEZ // NEXUS
+   PURE HTML + CSS | NO JAVASCRIPT
+===================================== */
+
+:root {
+    --red: #ff1838;
+    --dark-red: #a50019;
+    --black: #080808;
+    --panel: #111115;
+    --white: #f7f7f7;
+    --gray: #aaaab3;
+    --border: rgba(255, 24, 56, .55);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--white);
+    background:
+        linear-gradient(rgba(255,24,56,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,24,56,.035) 1px, transparent 1px),
+        radial-gradient(ellipse at top right, #31000a, transparent 45%),
+        var(--black);
+    background-size: 35px 35px, 35px 35px, auto, auto;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button, input, textarea {
+    font: inherit;
+}
+
+/* HIDDEN PAGE CONTROLS */
+
+.page-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* HEADER */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,5,7,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+    max-width: 1250px;
+    min-height: 82px;
+    margin: auto;
+    padding: 12px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.logo {
+    color: var(--red);
+    font-size: 30px;
+    font-weight: 1000;
+    font-style: italic;
+    letter-spacing: -2px;
+    text-shadow: 0 0 18px #ff183855;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+.logo small {
+    display: block;
+    color: #aaa;
+    font-size: 8px;
+    font-style: normal;
+    letter-spacing: 4px;
+    margin-top: 5px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+nav label {
+    cursor: pointer;
+    padding: 11px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: #ccc;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: .3s;
+}
+
+nav label:hover {
+    color: var(--red);
+    border-bottom-color: var(--red);
+}
+
+/* ACTIVE NAVIGATION */
+
+#home:checked ~ .app nav label[for="home"],
+#work:checked ~ .app nav label[for="work"],
+#about:checked ~ .app nav label[for="about"],
+#services:checked ~ .app nav label[for="services"],
+#notes:checked ~ .app nav label[for="notes"],
+#contact:checked ~ .app nav label[for="contact"] {
+    color: var(--red);
+    border-bottom-color: var(--red);
+    text-shadow: 0 0 12px #ff183877;
+}
+
+/* PAGE SYSTEM */
+
+main {
+    max-width: 1250px;
+    margin: auto;
+    padding: 45px 25px 70px;
+}
+
+.page {
+    display: none;
+    animation: pageEnter .5s ease both;
+}
+
+#home:checked ~ .app .home-page,
+#work:checked ~ .app .work-page,
+#about:checked ~ .app .about-page,
+#services:checked ~ .app .services-page,
+#notes:checked ~ .app .notes-page,
+#contact:checked ~ .app .contact-page {
+    display: block;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+    50% {
+        transform: translateY(-13px) rotate(1deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 8px #ff183822;
+    }
+    50% {
+        box-shadow: 0 0 28px #ff183866;
+    }
+}
+
+@keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(400%); }
+}
+
+/* GENERAL DESIGN */
+
+.eyebrow {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+    line-height: 1.08;
+}
+
+h1 {
+    font-size: clamp(42px, 7vw, 90px);
+    letter-spacing: -3px;
+    font-weight: 1000;
+}
+
+h2 {
+    font-size: clamp(30px, 5vw, 55px);
+    letter-spacing: -1.5px;
+}
+
+h3 {
+    font-size: 19px;
+    letter-spacing: .5px;
+}
+
+.red {
+    color: var(--red);
+}
+
+.muted {
+    color: var(--gray);
+}
+
+.lead {
+    color: #ddd;
+    font-size: 18px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+.section-title {
+    margin-bottom: 35px;
+}
+
+.section-title p {
+    margin-top: 12px;
+    color: var(--gray);
+    max-width: 650px;
+    line-height: 1.8;
+}
+
+.panel {
+    position: relative;
+    background: rgba(16,16,20,.88);
+    border: 1px solid var(--border);
+    box-shadow: 0 15px 45px #0008;
+}
+
+.panel::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 20px;
+    width: 50px;
+    height: 3px;
+    background: var(--red);
+}
+
+.panel::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    right: 20px;
+    width: 35px;
+    height: 3px;
+    background: var(--red);
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 20px;
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn.primary {
+    background: var(--red);
+    color: #080808;
+}
+
+.btn:hover {
+    background: white;
+    color: black;
+    transform: translateY(-4px);
+    box-shadow: 0 0 25px #ff183855;
+}
+
+/* HOME / HERO */
+
+.hero {
+    min-height: 650px;
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.portrait-wrap {
+    max-width: 410px;
+    width: 100%;
+    margin: auto;
+    padding: 12px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.portrait-wrap img {
+    display: block;
+    width: 100%;
+    height: 490px;
+    object-fit: cover;
+    object-position: center;
+    background: linear-gradient(145deg, #500010, #111);
+    border: 1px solid #ffffff22;
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 35px;
+    left: -15px;
+    padding: 12px 17px;
+    background: var(--red);
+    color: black;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.hero-copy h1 {
+    margin: 18px 0;
+}
+
+.hero-copy .description {
+    max-width: 600px;
+    color: #c4c4cb;
+    line-height: 1.9;
+    margin-top: 20px;
+}
+
+.hero-copy .name {
+    color: var(--red);
+    text-shadow: 0 0 25px #ff183833;
+}
+
+.tagline {
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-top: 30px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.stat {
+    border-top: 1px solid var(--border);
+    padding: 17px 10px;
+    background: #ffffff05;
+}
+
+.stat strong {
+    display: block;
+    color: var(--red);
+    font-size: 28px;
+}
+
+.stat span {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--gray);
+    text-transform: uppercase;
+}
+
+/* HOME QUICK ACCESS */
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 55px;
+}
+
+.quick-links label {
+    cursor: pointer;
+    padding: 18px;
+    border: 1px solid #333;
+    background: #111;
+    transition: .3s;
+}
+
+.quick-links label:hover {
+    border-color: var(--red);
+    transform: translateY(-5px);
+}
+
+.quick-links strong {
+    display: block;
+    color: var(--red);
+    margin-bottom: 5px;
+}
+
+.quick-links span {
+    font-size: 12px;
+    color: var(--gray);
+}
+
+/* PROJECTS */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    padding: 14px;
+    transition: .3s;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--red);
+    box-shadow: 0 12px 35px #ff183822;
+}
+
+.project-image {
+    height: 180px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    color: var(--red);
+    font-size: 22px;
+    font-weight: 1000;
+    letter-spacing: 3px;
+    background:
+        radial-gradient(circle at 75% 20%, #ff183833, transparent 40%),
+        linear-gradient(135deg, #39000b, #080808 70%);
+    border: 1px solid #ff183844;
+}
+
+.project-card p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 12px;
+}
+
+.project-number {
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 9px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+}
+
+.tag {
+    border: 1px solid #393940;
+    color: #ccc;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 6px 8px;
+}
+
+/* ABOUT */
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.content-box {
+    padding: 32px;
+}
+
+.content-box p {
+    color: var(--gray);
+    line-height: 1.9;
+    margin-top: 17px;
+}
+
+.line {
+    height: 3px;
+    width: 80px;
+    background: var(--red);
+    margin: 25px 0;
+    box-shadow: 0 0 18px var(--red);
+}
+
+.timeline {
+    display: grid;
+    gap: 22px;
+    margin-top: 30px;
+}
+
+.timeline-item {
+    padding-left: 18px;
+    border-left: 2px solid var(--red);
+}
+
+.timeline-item strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.timeline-item span {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* SERVICES */
+
+.service-list {
+    display: grid;
+    gap: 15px;
+}
+
+.service {
+    display: grid;
+    grid-template-columns: 65px 1fr 30px;
+    gap: 20px;
+    align-items: center;
+    padding: 23px;
+    transition: .3s;
+}
+
+.service:hover {
+    border-color: var(--red);
+    transform: translateX(5px);
+}
+
+.service-icon {
+    width: 55px;
+    height: 55px;
+    display: grid;
+    place-items: center;
+    color: var(--red);
+    border: 1px solid var(--red);
+    font-size: 24px;
+}
+
+.service p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.8;
+    margin-top: 8px;
+}
+
+.service-arrow {
+    color: var(--red);
+    font-size: 25px;
+}
+
+/* NOTES */
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.note {
+    padding: 25px;
+    min-height: 210px;
+    transition: .3s;
+}
+
+.note:hover {
+    transform: translateY(-5px);
+    border-color: var(--red);
+}
+
+.note-number {
+    color: var(--red);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+}
+
+.note p {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 1.9;
+    margin-top: 13px;
+}
+
+/* CONTACT */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 22px;
+}
+
+.contact-box {
+    padding: 30px;
+}
+
+.contact-detail {
+    padding: 17px 0;
+    border-bottom: 1px solid #303036;
+}
+
+.contact-detail span {
+    display: block;
+    color: var(--red);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.contact-detail strong {
+    display: block;
+    margin-top: 8px;
+    overflow-wrap: anywhere;
+}
+
+.contact-form {
+    display: grid;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.contact-form label {
+    display: grid;
+    gap: 8px;
+    color: #ddd;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px;
+    color: white;
+    background: #080808;
+    border: 1px solid #393940;
+    outline: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--red);
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-note {
+    color: #888;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    background: #050507;
+}
+
+.footer-inner {
+    max-width: 1250px;
+    margin: auto;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.footer-inner strong {
+    color: var(--red);
+}
+
+.footer-nav {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-nav label {
+    cursor: pointer;
+}
+
+.footer-nav label:hover {
+    color: var(--red);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    nav {
+        justify-content: flex-start;
+    }
+
+    nav label {
+        padding: 9px;
+        font-size: 10px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .portrait-wrap {
+        width: min(100%, 360px);
+    }
+
+    .hero-copy {
+        text-align: center;
+    }
+
+    .hero-copy .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button-row {
+        justify-content: center;
+    }
+
+    .project-grid,
+    .notes-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .two-columns,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    main {
+        padding: 35px 14px 50px;
+    }
+
+    .header-inner {
+        padding: 15px;
+    }
+
+    nav {
+        gap: 0;
+    }
+
+    nav label {
+        padding: 8px 7px;
+        letter-spacing: .7px;
+        font-size: 9px;
+    }
+
+    h1 {
+        font-size: 43px;
+        letter-spacing: -1.5px;
+    }
+
+    .portrait-wrap img {
+        height: 400px;
+    }
+
+    .project-grid,
+    .notes-grid,
+    .quick-links,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .service {
+        grid-template-columns: 45px 1fr;
+        gap: 13px;
+        padding: 17px;
+    }
+
+    .service-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
+    }
+
+    .service-arrow {
+        display: none;
+    }
+
+    .content-box,
+    .contact-box {
+        padding: 22px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CSS-only page controls -->
+<input class="page-toggle" type="radio" name="page" id="home" checked>
+<input class="page-toggle" type="radio" name="page" id="work">
+<input class="page-toggle" type="radio" name="page" id="about">
+<input class="page-toggle" type="radio" name="page" id="services">
+<input class="page-toggle" type="radio" name="page" id="notes">
+<input class="page-toggle" type="radio" name="page" id="contact">
+
+<div class="app">
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <a class="logo" href="#home" onclick="return false;">
+            LOPEZ
+            <small>NEXUS / DIGITAL PORTFOLIO</small>
+        </a>
+
+        <nav aria-label="Main navigation">
+            <label for="home">Home</label>
+            <label for="work">Work</label>
+            <label for="about">About</label>
+            <label for="services">Services</label>
+            <label for="notes">Notes</label>
+            <label for="contact">Contact</label>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<!-- =================================
+     PAGE 1: HOME
+================================= -->
+<section class="page home-page">
+    <div class="hero">
+
+        <!-- YOUR PICTURE APPEARS FIRST -->
+        <div class="portrait-wrap panel">
+            <img src="lopez.jpg" alt="Lopez profile picture">
+            <span class="photo-caption">01 / IDENTITY FILE</span>
+        </div>
+
+        <div class="hero-copy">
+            <p class="eyebrow">BSIT STUDENT / WEB DEVELOPER</p>
+
+            <h1>
+                DESIGN THE<br>
+                <span class="name">UNEXPECTED.</span>
+            </h1>
+
+            <p class="lead">
+                I'm <strong>Lopez</strong> — a student and aspiring web
+                developer turning ideas into bold digital experiences.
+            </p>
+
+            <p class="description">
+                Welcome to my digital world: a combination of clean code,
+                creative interfaces, cyberpunk energy, and a passion for
+                technology. I believe every project is an opportunity to
+                learn, create, and improve.
+            </p>
+
+            <div class="button-row">
+                <label for="work" class="btn primary">Explore My Work ↗</label>
+                <label for="contact" class="btn">Let's Connect</label>
+            </div>
+
+            <p class="tagline">DREAM · CODE · CREATE · REPEAT</p>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>01</strong>
+                    <span>Curious Mind</span>
+                </div>
+                <div class="stat">
+                    <strong>24/7</strong>
+                    <span>Learning Mode</span>
+                </div>
+                <div class="stat">
+                    <strong>∞</strong>
+                    <span>Ideas to Build</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-links">
+        <label for="work">
+            <strong>01 / MY WORK ↗</strong>
+            <span>Explore my featured projects.</span>
+        </label>
+        <label for="about">
+            <strong>02 / ABOUT ME ↗</strong>
+            <span>Learn more about my journey.</span>
+        </label>
+        <label for="services">
+            <strong>03 / SERVICES ↗</strong>
+            <span>Discover what I can help with.</span>
+        </label>
+    </div>
+</section>
+
+<!-- =================================
+     PAGE 2: WORK
+================================= -->
+<section class="page work-page">
+    <div class="section-title">
+        <p class="eyebrow">Selected projects / 001—006</p>
+        <h1>THE <span class="red">WORK.</span></h1>
+        <p>
+            A collection of my web development concepts, school projects,
+            database designs, and information system studies.
+        </p>
+    </div>
+
+    <div class="project-grid">
+
+        <article class="project-card panel">
+            <div class="project-image">REDLINE</div>
+            <div class="project-number">PROJECT / 001</div>
+            <h3>REDLINE Store</h3>
+            <p>
+                A streetwear storefront concept featuring bold colors,
+                product cards, and a modern shopping interface.
+            </p>
+            <div class="tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">WEB DESIGN</span>
+            </div>
+        </article>
+
+        <article class="project-card panel">
+            <div class="project-image">NEXUS_01</div>
+            <div class="project-number">PROJECT / 002</div>
+            <h3>Cyberpunk Portfolio</h3>
+            <p>
+                A futuristic portfolio with responsive layouts,
+                red neon accents, and CSS animations.
+            </p>
+            <div class="tags">
+                <span class="tag">PORTFOLIO</span>
+                <span class="tag">UI DESIGN</span>
+            </div>
+        </article>
+
+        <article class="project-card panel">
+            <div class="project-image">HEART STUDIO</div>
+            <div class="project-number">PROJECT / 003</div>
+            <h3>Heart Studio MIS</h3>
+            <p>
+                An information system concept for inventory monitoring
+                and document management in a printing shop.
+            </p>
+            <div class="tags">
+                <span class="tag">MIS</span>
+                <span class="tag">CASE STUDY</span>
+            </div>
+        </article>
+
+        <article class="project-card panel">
+            <div class="project-image">PEOPLE'S WATER</div>
+            <div class="project-number">PROJECT / 004</div>
+            <h3>People's Water</h3>
+            <p>
+                A proposed information system for sales, inventory,
+                customer transactions, and water delivery operations.
+            </p>
+            <div class="tags">
+                <span class="tag">SYSTEM ANALYSIS</span>
+                <span class="tag">MIS</span>
+            </div>
+        </article>
+
+        <article class="project-card panel">
+            <div class="project-image">LIBRARY_SYS</div>
+            <div class="project-number">PROJECT / 005</div>
+            <h3>Library Reservation</h3>
+            <p>
+                A database and interface concept for organizing
+                library items, reservations, and transaction records.
+            </p>
+            <div class="tags">
+                <span class="tag">DATABASE</span>
+                <span class="tag">ERD</span>
+            </div>
+        </article>
+
+        <article class="project-card panel">
+            <div class="project-image">RENT // SELL</div>
+            <div class="project-number">PROJECT / 006</div>
+            <h3>Computer Rentals & Sales</h3>
+            <p>
+                A database design concept for customers, equipment,
+                rental transactions, and sales.
+            </p>
+            <div class="tags">
+                <span class="tag">SQL</span>
+                <span class="tag">ERD</span>
+            </div>
+        </article>
+
+    </div>
+
+    <div class="button-row">
+        <label for="contact" class="btn primary">Discuss a Project ↗</label>
+    </div>
+</section>
+
+<!-- =================================
+     PAGE 3: ABOUT
+================================= -->
+<section class="page about-page">
+    <div class="section-title">
+        <p class="eyebrow">Behind the screen</p>
+        <h1>ABOUT <span class="red">LOPEZ.</span></h1>
+        <p>
+            Student today. Builder in progress. Always curious about
+            what technology can make possible.
+        </p>
+    </div>
+
+    <div class="two-columns">
+        <article class="content-box panel">
+            <p class="eyebrow">01 / MY STORY</p>
+            <h2>LEARNING BY <span class="red">BUILDING.</span></h2>
+            <div class="line"></div>
+
+            <p>
+                I'm Lopez, a BSIT student interested in web development,
+                user interface design, and practical information systems.
+            </p>
+
+            <p>
+                I enjoy transforming concepts into organized interfaces
+                and learning how design, structure, and technology work
+                together.
+            </p>
+
+            <p>
+                I'm still developing my skills, and every project gives
+                me another opportunity to experiment, solve problems,
+                and improve.
+            </p>
+
+            <div class="tags">
+                <span class="tag">WEB DEVELOPMENT</span>
+                <span class="tag">HTML + CSS</span>
+                <span class="tag">UI DESIGN</span>
+                <span class="tag">IT STUDENT</span>
+            </div>
+        </article>
+
+        <article class="content-box panel">
+            <p class="eyebrow">02 / MY DIRECTION</p>
+            <h2>MY <span class="red">JOURNEY.</span></h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Web Development</strong>
+                    <span>
+                        Building structured, responsive websites using
+                        HTML and CSS.
+                    </span>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>UI / UX Design</strong>
+                    <span>
+                        Exploring layouts and visual styles that help
+                        users navigate websites easily.
+                    </span>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Information Systems</strong>
+                    <span>
+                        Learning how digital systems can improve
+                        business processes and information management.
+                    </span>
+                </div>
+
+                <div class="timeline-item">
+                    <strong>Continuous Learning</strong>
+                    <span>
+                        Practicing new techniques, reviewing feedback,
+                        and improving my work.
+                    </span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- =================================
+     PAGE 4: SERVICES
+================================= -->
+<section class="page services-page">
+    <div class="section-title">
+        <p class="eyebrow">What I can help with</p>
+        <h1>MY <span class="red">SERVICES.</span></h1>
+        <p>
+            Creative and technical work focused on organized layouts,
+            visual consistency, and practical website design.
+        </p>
+    </div>
+
+    <div class="service-list">
+
+        <article class="service panel">
+            <div class="service-icon">&lt;/&gt;</div>
+            <div>
+                <h3>Basic Website Development</h3>
+                <p>
+                    Responsive multi-page websites built with semantic
+                    HTML and custom CSS.
+                </p>
+            </div>
+            <span class="service-arrow">↗</span>
+        </article>
+
+        <article class="service panel">
+            <div class="service-icon">◈</div>
+            <div>
+                <h3>UI Layout and Styling</h3>
+                <p>
+                    Page layouts, color systems, navigation, typography,
+                    cards, and consistent visual styling.
+                </p>
+            </div>
+            <span class="service-arrow">↗</span>
+        </article>
+
+        <article class="service panel">
+            <div class="service-icon">▤</div>
+            <div>
+                <h3>Portfolio and Landing Pages</h3>
+                <p>
+                    Personal websites and landing pages with custom
+                    themes, sections, and responsive designs.
+                </p>
+            </div>
+            <span class="service-arrow">↗</span>
+        </article>
+
+        <article class="service panel">
+            <div class="service-icon">⌬</div>
+            <div>
+                <h3>IT Project Documentation</h3>
+                <p>
+                    Help organizing system concepts, project descriptions,
+                    and database diagram layouts for school projects.
+                </p>
+            </div>
+            <span class="service-arrow">↗</span>
+        </article>
+
+        <article class="service panel">
+            <div class="service-icon">◎</div>
+            <div>
+                <h3>Website Refresh</h3>
+                <p>
+                    Improving the appearance, readability, and
+                    organization of existing static web pages.
+                </p>
+            </div>
+            <span class="service-arrow">↗</span>
+        </article>
+
+    </div>
+
+    <div class="button-row">
+        <label for="contact" class="btn primary">Let's Work Together ↗</label>
+    </div>
+</section>
+
+<!-- =================================
+     PAGE 5: NOTES
+================================= -->
+<section class="page notes-page">
+    <div class="section-title">
+        <p class="eyebrow">Ideas in progress</p>
+        <h1>FIELD <span class="red">NOTES.</span></h1>
+        <p>
+            Small reminders, lessons, and thoughts collected while
+            learning to design and build.
+        </p>
+    </div>
+
+    <div class="notes-grid">
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 001</div>
+            <h3>Keep Going</h3>
+            <p>
+                Progress can be slow, but small steps still move
+                a project forward. Finish, review, and improve.
+            </p>
+        </article>
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 002</div>
+            <h3>Better Code</h3>
+            <p>
+                Clean code is not only about appearance. It should
+                be readable, organized, and easier to maintain.
+            </p>
+        </article>
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 003</div>
+            <h3>Design with Purpose</h3>
+            <p>
+                Visual effects should support the experience rather
+                than distract users from the important information.
+            </p>
+        </article>
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 004</div>
+            <h3>Build, Then Refine</h3>
+            <p>
+                A first version is a starting point. Test different
+                screens and treat every issue as useful feedback.
+            </p>
+        </article>
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 005</div>
+            <h3>Stay Curious</h3>
+            <p>
+                Keep asking questions, exploring ideas, and
+                practicing the fundamentals of technology.
+            </p>
+        </article>
+
+        <article class="note panel">
+            <div class="note-number">NOTE / 006</div>
+            <h3>Dream Bigger</h3>
+            <p>
+                Your current skill level is not your final
+                destination. Every project can teach you something new.
+            </p>
+        </article>
+
+    </div>
+</section>
+
+<!-- =================================
+     PAGE 6: CONTACT
+================================= -->
+<section class="page contact-page">
+    <div class="section-title">
+        <p class="eyebrow">Open channel / 006</p>
+        <h1>LET'S <span class="red">TALK.</span></h1>
+        <p>
+            Have a project idea, school collaboration, or opportunity?
+            Let's connect and start a conversation.
+        </p>
+    </div>
+
+    <div class="contact-grid">
+
+        <article class="contact-box panel">
+            <p class="eyebrow">CONTACT DETAILS</p>
+            <h2>START A <span class="red">CONVERSATION.</span></h2>
+            <div class="line"></div>
+
+            <div class="contact-detail">
+                <span>Email</span>
+                <strong>your-email@example.com</strong>
+            </div>
+
+            <div class="contact-detail">
+                <span>Location</span>
+                <strong>Baguio City, Philippines</strong>
+            </div>
+
+            <div class="contact-detail">
+                <span>Availability</span>
+                <strong>Open to Learning and Collaboration</strong>
+            </div>
+
+            <p class="form-note" style="margin-top:20px">
+                Replace the sample email and contact details with your
+                actual information before publishing.
+            </p>
+        </article>
+
+        <article class="contact-box panel">
+            <p class="eyebrow">MESSAGE TERMINAL</p>
+            <h2>SEND A <span class="red">MESSAGE.</span></h2>
+
+            <!-- HTML-only form; opens the visitor's email application -->
+            <form class="contact-form"
+                  action="mailto:your-email@example.com"
+                  method="post"
+                  enctype="text/plain">
+
+                <label>
+                    Your Name
+                    <input type="text" name="Name"
+                           placeholder="Enter your name" required>
+                </label>
+
+                <label>
+                    Your Email
+                    <input type="email" name="Email"
+                           placeholder="you@example.com" required>
+                </label>
+
+                <label>
+                    Subject
+                    <input type="text" name="Subject"
+                           placeholder="What's this about?" required>
+                </label>
+
+                <label>
+                    Message
+                    <textarea name="Message"
+                              placeholder="Write your message..."
+                              required></textarea>
+                </label>
+
+                <button type="submit" class="btn primary">
+                    Send Message ↗
+                </button>
+
+                <p class="form-note">
+                    This HTML-only form relies on the visitor's default
+                    email app. Direct online submissions require a
+                    backend or form service.
+                </p>
+            </form>
+        </article>
+
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 <strong>LOPEZ // NEXUS</strong> · ALL RIGHTS RESERVED.</p>
+
+        <div class="footer-nav">
+            <label for="home">HOME</label>
+            <label for="work">WORK</label>
+            <label for="about">ABOUT</label>
+            <label for="contact">CONTACT</label>
+        </div>
+    </div>
+</footer>
+
+</div>
+</body>
+</html>
